@@ -10,6 +10,19 @@ const userSchema = new mongoose.Schema({
     water: { type: Number, default: 0 }, // Tracks daily water progress in %
     steps: { type: Number, default: 0 }, // Tracks daily step progress in %
   },
+  waterStreak: { type: Number, default: 0 }, // Water intake streak
+  stepsStreak: { type: Number, default: 0 }, // Steps streak
+  lastUpdated: { type: Date, default: Date.now }, // Last date of update to track streak reset
+  healthReports: [
+    {
+      date: Date,
+      waterIntake: Number,
+      stepsWalked: Number,
+      waterStreak: Number,
+      stepsStreak: Number,
+      message: String, // A personalized message if any
+    },
+  ],
 });
 
 const User = mongoose.model('User', userSchema);
